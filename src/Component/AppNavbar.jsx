@@ -2,84 +2,39 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import Badge from 'react-bootstrap/Badge';
-
-
-import { NavLink } from 'react-router-dom';
-
-
-import { GiDiamondRing, GiBroadsword } from 'react-icons/gi';
-import { FaGem, FaUsers, FaArchive, FaTools, FaQrcode, FaBook, FaCog, FaDatabase } from 'react-icons/fa';
-
+import '../index.css';
 
 function AppNavbar() {
+  const links = [
+    { label: 'About',    href: '#about' },
+    { label: 'Skills',   href: '#skills' },
+    { label: 'Projects', href: '#projects' },
+    { label: 'Services', href: '#services' },
+  ];
 
-
-    const mainNavLinks = [
-        { key: "#/", href: "/", icon: FaGem, text: "Home" },
-    
-    ];
-
-    const settingsNavLinks = [
-   
-    ];
-
-
-    const activeStyle = {
-        borderBottom: '3px solid #0dcaf0', // Using Bootstrap 'info' color
-        color: 'white' // Ensure text is white when active on dark background
-    };
-     const inactiveStyle = {
-     };
-    const renderNavLinkContent = (item) => (
-        <>
-            {item.icon && <item.icon className="me-2" />}
-            <span>{item.text}</span>
-            {item.count !== undefined && (
-                <Badge pill bg="secondary" className="ms-2">
-                    {item.count}
-                </Badge>
-            )}
-        </>
-    );
-
-    return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top" >
-            <Container fluid>
-                <Navbar.Brand as={NavLink} to="/">
-                    <GiDiamondRing size="1.5em" className="me-2" />
-                    Chitpanu
-                </Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto text-center" >
-                        {mainNavLinks.map((item) => (
-                            <Nav.Link 
-                                key={item.key}
-                                as={NavLink}
-                                to={item.href} 
-                                style={({ isActive }) => isActive ? activeStyle : inactiveStyle }
-                            >
-                                {renderNavLinkContent(item)}
-                            </Nav.Link>
-                        ))}
-                    </Nav>
-                    <Nav>
-                       {settingsNavLinks.map((item) => (
-                             <Nav.Link
-                                key={item.key}
-                                as={NavLink} // Render Nav.Link as NavLink
-                                to={item.href} // Use 'to' prop for destination path
-                                style={({ isActive }) => isActive ? activeStyle : inactiveStyle }
-                            >
-                                {renderNavLinkContent(item)}
-                            </Nav.Link>
-                        ))}
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-    );
+  return (
+    <Navbar expand="lg" sticky="top" className="pf-navbar">
+      <Container fluid>
+        <Navbar.Brand href="#home" className="pf-brand">
+          <div className="pf-brand-logo">CP</div>
+          Chitpanu
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="pf-nav" />
+        <Navbar.Collapse id="pf-nav">
+          <Nav className="ms-auto align-items-center gap-1">
+            {links.map((l) => (
+              <a key={l.label} href={l.href} className="pf-nav-link">
+                {l.label}
+              </a>
+            ))}
+            <a href="mailto:chitpanu.th@gmail.com" className="pf-nav-link pf-nav-cta ms-2">
+              Hire Me
+            </a>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
 
 export default AppNavbar;
