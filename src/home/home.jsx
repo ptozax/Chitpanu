@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  FaEnvelope, FaDiscord, FaGamepad, FaCode, FaTools, FaRobot,
+  FaEnvelope, FaDiscord, FaGithub, FaGamepad, FaCode, FaTools, FaRobot,
   FaTimes, FaChevronLeft, FaChevronRight,
 } from 'react-icons/fa';
 import {
@@ -284,6 +284,9 @@ export default function Home() {
             <motion.div variants={fadeUp} className="pf-socials">
               <a href="mailto:chitpanu.th@gmail.com" className="pf-social-btn" title="Email">
                 <FaEnvelope />
+              </a>
+              <a href="https://github.com/ptozax" target="_blank" rel="noreferrer" className="pf-social-btn" title="GitHub">
+                <FaGithub />
               </a>
               <a href="#" className="pf-social-btn" title="Discord">
                 <FaDiscord />

@@ -120,6 +120,24 @@ body {
   background: rgba(255, 255, 255, 0.05);
 }
 
+.pf-nav-github {
+  width: 34px;
+  height: 34px;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-hover) !important;
+  border-radius: 8px;
+  font-size: 1rem !important;
+  padding: 0 !important;
+}
+
+.pf-nav-github:hover {
+  color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  background: rgba(0, 212, 255, 0.06) !important;
+}
+
 .pf-nav-cta {
   background: linear-gradient(135deg, var(--accent), var(--accent-dark)) !important;
   color: #000 !important;

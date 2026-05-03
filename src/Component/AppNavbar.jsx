@@ -2,6 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { FaGithub } from 'react-icons/fa';
 import '../index.css';
 
 function AppNavbar() {
@@ -27,7 +28,16 @@ function AppNavbar() {
                 {l.label}
               </a>
             ))}
-            <a href="mailto:chitpanu.th@gmail.com" className="pf-nav-link pf-nav-cta ms-2">
+            <a
+              href="https://github.com/ptozax"
+              target="_blank"
+              rel="noreferrer"
+              className="pf-nav-link pf-nav-github ms-1"
+              title="GitHub"
+            >
+              <FaGithub />
+            </a>
+            <a href="mailto:chitpanu.th@gmail.com" className="pf-nav-link pf-nav-cta ms-1">
               Hire Me
             </a>
           </Nav>
