@@ -1,11 +1,12 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   FaEnvelope, FaDiscord, FaGamepad, FaCode, FaTools, FaRobot,
+  FaTimes, FaChevronLeft, FaChevronRight,
 } from 'react-icons/fa';
 import {
   SiUnrealengine, SiCplusplus, SiReact, SiNodedotjs,
-  SiMongodb, SiPostgresql, SiDocker, SiGit,
+  SiMongodb, SiPostgresql, SiDocker, SiGit, SiLinux,
 } from 'react-icons/si';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../index.css';
@@ -51,7 +52,9 @@ const SKILLS = [
       { name: 'Git', icon: <SiGit /> },
       { name: 'Docker', icon: <SiDocker /> },
       { name: 'GitHub Actions' },
-      { name: 'Linux' },
+      { name: 'Linux', icon: <SiLinux /> },
+      { name: 'SSH' },
+      { name: 'Shell Script' },
     ],
   },
 ];
@@ -63,36 +66,42 @@ const PROJECTS = [
     title: 'EFT TaskTrack — Quest Map',
     desc: 'Interactive quest map for Escape from Tarkov. Visualize quest locations, objectives, and progression across all maps.',
     img: `${BASE}EFT_QUEST_MAP.png`,
+    gallery: [`${BASE}EFT_QUEST_MAP.png`],
     tags: ['React', 'EFT', 'Interactive Map'],
   },
   {
     title: 'EFT TaskTrack — Quest Tree',
     desc: 'Visual quest dependency explorer. Trace unlock chains and plan optimal quest progression for every trader.',
     img: `${BASE}EFT_TREE.png`,
+    gallery: [`${BASE}EFT_TREE.png`],
     tags: ['React', 'Data Viz', 'EFT'],
   },
   {
     title: 'EFT TaskTrack — Price Scanner',
     desc: 'Real-time flea market price scanner using screen capture. Instantly reads item values from the game window.',
     img: `${BASE}EFT_SCAN_RESULT.png`,
+    gallery: [`${BASE}EFT_SCAN.png`, `${BASE}EFT_SCAN_RESULT.png`],
     tags: ['Screen Capture', 'OCR', 'EFT'],
   },
   {
     title: 'Artifact Checker',
     desc: 'Game artifact scanner with live inventory grid analysis, stat evaluation, and debug console output.',
     img: `${BASE}GS_SCAN.png`,
+    gallery: [`${BASE}GS_SCAN.png`, `${BASE}GS_SCAN_DEBUG.png`],
     tags: ['Python', 'Scanner', 'Game Tools'],
   },
   {
     title: 'Discord Bot',
     desc: 'Multi-function Discord bot featuring automated news posting, music playback, and rich embed formatting.',
     img: `${BASE}BOT_DISCORD.png`,
+    gallery: [`${BASE}BOT_DISCORD.png`],
     tags: ['Node.js', 'Discord.js', 'Bot'],
   },
   {
     title: 'Git CLI Manager',
     desc: 'Terminal UI tool for managing multiple Git repositories simultaneously — pull, status, and branch checks in one view.',
     img: `${BASE}CMD_SCRIPT.png`,
+    gallery: [`${BASE}CMD_SCRIPT.png`],
     tags: ['CLI', 'TUI', 'Git', 'Automation'],
   },
 ];
@@ -124,7 +133,112 @@ const SERVICES = [
   },
 ];
 
+function ProjectModal({ project, onClose }) {
+  const [imgIdx, setImgIdx] = useState(0);
+  const gallery = project.gallery;
+  const multi = gallery.length > 1;
+
+  const prev = () => setImgIdx((i) => (i - 1 + gallery.length) % gallery.length);
+  const next = () => setImgIdx((i) => (i + 1) % gallery.length);
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+    };
+    document.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, []);
+
+  return (
+    <motion.div
+      className="pf-modal-backdrop"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      onClick={onClose}
+    >
+      <motion.div
+        className="pf-modal"
+        initial={{ opacity: 0, scale: 0.94, y: 24 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.94, y: 24 }}
+        transition={{ duration: 0.25, ease: 'easeOut' }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="pf-modal-header">
+          <h3 className="pf-modal-title">{project.title}</h3>
+          <button className="pf-modal-close" onClick={onClose} aria-label="Close">
+            <FaTimes />
+          </button>
+        </div>
+
+        {/* Image */}
+        <div className="pf-modal-img-wrap">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={imgIdx}
+              src={gallery[imgIdx]}
+              alt={`${project.title} screenshot ${imgIdx + 1}`}
+              className="pf-modal-img"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            />
+          </AnimatePresence>
+
+          {multi && (
+            <>
+              <button className="pf-modal-nav-btn pf-modal-nav-prev" onClick={prev} aria-label="Previous">
+                <FaChevronLeft />
+              </button>
+              <button className="pf-modal-nav-btn pf-modal-nav-next" onClick={next} aria-label="Next">
+                <FaChevronRight />
+              </button>
+              <span className="pf-modal-counter">{imgIdx + 1} / {gallery.length}</span>
+            </>
+          )}
+        </div>
+
+        {/* Dots */}
+        {multi && (
+          <div className="pf-modal-dots">
+            {gallery.map((_, i) => (
+              <button
+                key={i}
+                className={`pf-modal-dot ${i === imgIdx ? 'active' : ''}`}
+                onClick={() => setImgIdx(i)}
+                aria-label={`Go to image ${i + 1}`}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Body */}
+        <div className="pf-modal-body">
+          <p className="pf-modal-desc">{project.desc}</p>
+          <div className="pf-project-tags">
+            {project.tags.map((t, i) => (
+              <span key={i} className="pf-project-tag">{t}</span>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export default function Home() {
+  const [activeProject, setActiveProject] = useState(null);
+
   return (
     <main>
 
@@ -282,11 +396,19 @@ export default function Home() {
 
             <div className="pf-projects-grid">
               {PROJECTS.map((p, i) => (
-                <motion.div key={i} variants={fadeUp} className="pf-project-card">
+                <motion.div
+                  key={i}
+                  variants={fadeUp}
+                  className="pf-project-card"
+                  onClick={() => setActiveProject(p)}
+                >
                   <div className="pf-project-img-wrap">
                     <img src={p.img} alt={p.title} className="pf-project-img" />
                     <div className="pf-project-overlay">
-                      <span className="pf-project-overlay-text">View Project</span>
+                      <span className="pf-project-overlay-text">
+                        View Project
+                        {p.gallery.length > 1 && ` · ${p.gallery.length} screenshots`}
+                      </span>
                     </div>
                   </div>
                   <div className="pf-project-body">
@@ -366,6 +488,16 @@ export default function Home() {
           <p>© 2025 Chitpanu (Poen) · Game Dev &amp; Full-Stack Web Engineer</p>
         </div>
       </footer>
+
+      {/* ── MODAL ────────────────────────────── */}
+      <AnimatePresence>
+        {activeProject && (
+          <ProjectModal
+            project={activeProject}
+            onClose={() => setActiveProject(null)}
+          />
+        )}
+      </AnimatePresence>
 
     </main>
   );
