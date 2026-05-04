@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#09090f"/>
+      <stop offset="100%" style="stop-color:#0e0e1a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="0%" r="70%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#09090f;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+
+  <!-- Grid lines -->
+  <g stroke="#00d4ff" stroke-opacity="0.03" stroke-width="1">
+    <line x1="0" y1="63" x2="1200" y2="63"/>
+    <line x1="0" y1="126" x2="1200" y2="126"/>
+    <line x1="0" y1="189" x2="1200" y2="189"/>
+    <line x1="0" y1="252" x2="1200" y2="252"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="378" x2="1200" y2="378"/>
+    <line x1="0" y1="441" x2="1200" y2="441"/>
+    <line x1="0" y1="504" x2="1200" y2="504"/>
+    <line x1="0" y1="567" x2="1200" y2="567"/>
+    <line x1="63" y1="0" x2="63" y2="630"/>
+    <line x1="126" y1="0" x2="126" y2="630"/>
+    <line x1="189" y1="0" x2="189" y2="630"/>
+    <line x1="252" y1="0" x2="252" y2="630"/>
+    <line x1="315" y1="0" x2="315" y2="630"/>
+    <line x1="378" y1="0" x2="378" y2="630"/>
+    <line x1="441" y1="0" x2="441" y2="630"/>
+    <line x1="504" y1="0" x2="504" y2="630"/>
+    <line x1="567" y1="0" x2="567" y2="630"/>
+    <line x1="630" y1="0" x2="630" y2="630"/>
+    <line x1="693" y1="0" x2="693" y2="630"/>
+    <line x1="756" y1="0" x2="756" y2="630"/>
+    <line x1="819" y1="0" x2="819" y2="630"/>
+    <line x1="882" y1="0" x2="882" y2="630"/>
+    <line x1="945" y1="0" x2="945" y2="630"/>
+    <line x1="1008" y1="0" x2="1008" y2="630"/>
+    <line x1="1071" y1="0" x2="1071" y2="630"/>
+    <line x1="1134" y1="0" x2="1134" y2="630"/>
+  </g>
+
+  <!-- Logo box -->
+  <rect x="80" y="80" width="72" height="72" rx="18" fill="url(#logo-grad)"/>
+  <text x="116" y="131" font-family="Arial Black, sans-serif" font-size="28" font-weight="900" fill="white" text-anchor="middle">CP</text>
+
+  <!-- Available badge -->
+  <rect x="80" y="192" width="270" height="34" rx="17" fill="none" stroke="#10b981" stroke-width="1.5" stroke-opacity="0.6"/>
+  <rect x="80" y="192" width="270" height="34" rx="17" fill="#10b981" fill-opacity="0.08"/>
+  <circle cx="103" cy="209" r="5" fill="#10b981"/>
+  <text x="116" y="214" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#10b981" letter-spacing="1">AVAILABLE FOR FREELANCE</text>
+
+  <!-- Name -->
+  <text x="80" y="320" font-family="Arial Black, sans-serif" font-size="80" font-weight="900" fill="#f1f5f9" letter-spacing="-3">Chitpanu</text>
+  <text x="80" y="400" font-family="Arial Black, sans-serif" font-size="56" font-weight="900" letter-spacing="-2">
+    <tspan fill="url(#accent)">(Poen)</tspan>
+  </text>
+
+  <!-- Role -->
+  <text x="80" y="460" font-family="Arial, sans-serif" font-size="24" font-weight="600" fill="#00d4ff" letter-spacing="0.5">Game Developer &amp; Full-Stack Web Engineer</text>
+
+  <!-- Divider -->
+  <rect x="80" y="490" width="120" height="3" rx="2" fill="url(#accent)"/>
+
+  <!-- Skills pills -->
+  <rect x="80" y="518" width="130" height="32" rx="8" fill="#7c3aed" fill-opacity="0.18"/>
+  <rect x="80" y="518" width="130" height="32" rx="8" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.5" fill="none"/>
+  <text x="145" y="539" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#a78bfa" text-anchor="middle">Unreal Engine</text>
+
+  <rect x="222" y="518" width="88" height="32" rx="8" fill="#00d4ff" fill-opacity="0.12"/>
+  <rect x="222" y="518" width="88" height="32" rx="8" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.4" fill="none"/>
+  <text x="266" y="539" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#00d4ff" text-anchor="middle">React</text>
+
+  <rect x="322" y="518" width="88" height="32" rx="8" fill="#10b981" fill-opacity="0.12"/>
+  <rect x="322" y="518" width="88" height="32" rx="8" stroke="#10b981" stroke-width="1" stroke-opacity="0.4" fill="none"/>
+  <text x="366" y="539" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#10b981" text-anchor="middle">Node.js</text>
+
+  <rect x="422" y="518" width="72" height="32" rx="8" fill="#f59e0b" fill-opacity="0.12"/>
+  <rect x="422" y="518" width="72" height="32" rx="8" stroke="#f59e0b" stroke-width="1" stroke-opacity="0.4" fill="none"/>
+  <text x="458" y="539" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#f59e0b" text-anchor="middle">Docker</text>
+
+  <rect x="506" y="518" width="72" height="32" rx="8" fill="#94a3b8" fill-opacity="0.1"/>
+  <rect x="506" y="518" width="72" height="32" rx="8" stroke="#94a3b8" stroke-width="1" stroke-opacity="0.3" fill="none"/>
+  <text x="542" y="539" font-family="Arial, sans-serif" font-size="13" font-weight="700" fill="#94a3b8" text-anchor="middle">Linux</text>
+
+  <!-- URL bottom right -->
+  <text x="1120" y="560" font-family="Arial, sans-serif" font-size="18" font-weight="600" fill="#475569" text-anchor="end">ptozax.github.io/Chitpanu</text>
+  <rect x="880" y="570" width="240" height="1" fill="#475569" fill-opacity="0.3"/>
+</svg>
